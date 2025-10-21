@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Post Found Item{% endblock %}
+{% block content %}
+<h2 class="mb-4">Post a Found Item</h2>
+
+<form method="post" enctype="multipart/form-data" class="p-4 border rounded bg-white shadow-sm">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">Item Name</label>
+    {{ form.item_name }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    {{ form.description }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Image</label>
+    {{ form.image }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Location Found</label>
+    {{ form.location }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Date Found</label>
+    {{ form.date_found }}
+  </div>
+
+  <hr>
+  <h5>Verification Questions</h5>
+  <p class="text-muted">Please enter 3 simple questions and their answers to help verify the real owner.</p>
+
+  <div class="mb-3">
+    <label class="form-label">Question 1</label>
+    {{ form.question1 }}
+    <label class="form-label">Answer 1</label>
+    {{ form.answer1 }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Question 2</label>
+    {{ form.question2 }}
+    <label class="form-label">Answer 2</label>
+    {{ form.answer2 }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Question 3</label>
+    {{ form.question3 }}
+    <label class="form-label">Answer 3</label>
+    {{ form.answer3 }}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

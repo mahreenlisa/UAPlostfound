@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+.background {
+    background: url("/static/items/uni.jpg") no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 50, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+nav {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00d4ff;
+}
+
+.login-container {
+    position: absolute;
+    right: 100px; /* moves the box to the right side */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #61f4ed; /* or use #45d6d6 */
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    text-align: center;
+    z-index: 10;
+}
+
+.login-container h2 {
+    margin-bottom: 25px;
+    color: #002244;
+    font-weight: 700;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container label {
+    align-self: flex-start; /* Aligns the label text to the left */
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #002244;
+}
+
+.login-container input {
+    margin: 0 0 10px 0; /* Adjusted margin */
+    padding: 12px 15px;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Added subtle inner shadow for depth */
+}
+
+/* --- BUTTON GROUP STYLES FOR SIDE-BY-SIDE LAYOUT (New/Updated) --- */
+
+/* Container to hold the LOGIN button group and the SIGN UP group horizontally */
+.button-and-signup-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+/* Group for the "Don't have an account?" text and SIGN UP button */
+.signup-info-group {
+    display: flex;
+    flex-direction: column; /* Stack text and button vertically */
+    align-items: flex-start; /* Align text and button to the left */
+}
+
+/* Style for the "Don't have an account?" text */
+.signup-info-group p {
+    margin-top: 0;
+    margin-bottom: 3px;
+    color: #002244;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Login box and Signup box (now just containers for positioning) */
+.login-box, .signup-box {
+    background: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    display: inline-block;
+}
+
+/* Updated LOGIN Button Style */
+.login-btn {
+    /* Styles to match the expected white, rounded button with dark text */
+    background: white;
+    color: #002244;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    transition: background 0.3s;
+    text-transform: uppercase;
+}
+
+.login-btn:hover {
+    background: #e6e6e6;
+}
+
+/* Updated SIGN UP Button Style */
+.signup-btn {
+    /* Styles to match the expected white, rounded button with dark text */
+    background: white;
+    color: #002244;
+    padding: 15px 40px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    transition: background 0.3s;
+    text-decoration: none; /* Ensure text decoration is off for the link */
+    text-transform: uppercase;
+}
+
+.signup-btn:hover {
+    background: #e6e6e6;
+}
+
+/* --- CLEANUP: Removed or simplified old conflicting styles --- */
+/* The previous general .login-container p and a styles are now handled by the specific button/text styles above. */
+.login-container p {
+    /* Keep this if you have other paragraphs, but the main signup text is handled by .signup-info-group p */
+    margin-top: 10px;
+    color: #002244;
+}
+
+.login-container a {
+    /* This style is mainly for navigation or other links; buttons are handled by .signup-btn */
+    color: white;
+    font-weight: bold;
+    background: #002244;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}

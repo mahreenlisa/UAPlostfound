@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAP Lost & Found</title>
+    <link rel="stylesheet" href="{% static 'items/style.css' %}">
+</head>
+<body>
+    <div class="background">
+        <div class="overlay"></div>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+
+        <div class="login-container">
+            <h2>LOGIN TO YOUR ACCOUNT</h2>
+
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+
+                <label for="email">Email Address :</label>
+                <input type="email" id="email" name="username" placeholder="Enter your email" required>
+
+                <label for="password">Password :</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <div class="button-and-signup-group">
+
+                    <div class="login-box">
+                        <button type="submit" class="login-btn">LOGIN</button>
+                    </div>
+
+                    <div class="signup-info-group">
+                        <p>Don't have an account?</p>
+
+                        <div class="signup-box">
+                            <a href="{% url 'signup' %}" class="signup-btn">SIGN UP</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
