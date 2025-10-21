@@ -51,6 +51,9 @@ def home(request):
         'lost_items': lost_items,
     })
 
+def profile(request):
+    return render(request, 'profile.html')
+
 # ---- POST LOST ITEM ----
 @login_required
 def post_lost_item(request):

@@ -1,32 +1,72 @@
 {% extends 'items/base.html' %}
+{% load static %}
+{% block title %}Dashboard | UAP Lost & Found{% endblock %}
 
-{% block title %}Home | Lost & Found{% endblock %}
 {% block content %}
+<div class="container-fluid py-4">
 
-<h2 class="mb-4 text-center">Recent Lost & Found Posts</h2>
+    <h1 class="text-center display-6 fw-bold mb-4 d-none">UAP lost and found</h1>
 
-<div class="row">
-  {% for item in found_items %}
-  <div class="col-md-4">
-    <div class="card shadow-sm mb-4">
-      {% if item.image %}
-      <img src="{{ item.image.url }}" class="card-img-top" style="height:220px; object-fit:cover;">
-      {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ item.item_name }}</h5>
-        <p class="text-muted">{{ item.description|truncatewords:15 }}</p>
-        <p><strong>Found at:</strong> {{ item.location }}</p>
-        {% if not item.is_claimed %}
-        <a href="/claim/{{ item.id }}/" class="btn btn-primary btn-sm">Claim this item</a>
-        {% else %}
-        <span class="badge bg-success">Already Claimed</span>
-        {% endif %}
-      </div>
+    <section class="action-bar mb-5">
+        <input type="search" placeholder="Search for lost or found items" class="form-control form-control-lg search-input mb-3">
+
+        <div class="d-flex gap-3 flex-wrap">
+            <a href="{% url 'post_lost_item' %}" class="btn post-button post-lost flex-grow-1">Post a lost item</a>
+            <a href="{% url 'post_found_item' %}" class="btn post-button post-found flex-grow-1">Post a found item</a>
+            <button class="btn filter-button">
+                <i class="fas fa-filter me-1"></i> Filter
+            </button>
+        </div>
+    </section>
+
+    <div class="row content-sections gx-5">
+
+        <div class="col-lg-6 mb-4 mb-lg-0 section-lost">
+            <h2 class="section-title">Recently lost</h2>
+            <div class="row item-grid g-3">
+                {% for item in lost_items %}
+                <div class="col-4">
+                    <div class="item-card shadow-sm lost-color" onclick="window.location.href='{% url 'claim_item' item.id %}'">
+                        <div class="item-image-box">
+                            {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.item_name }}" class="img-fluid">
+                            {% else %}
+                            <span class="placeholder-icon">❓</span>
+                            {% endif %}
+                        </div>
+                        <p class="item-name">{{ item.item_name }}</p>
+                        <p class="item-date text-muted">{{ item.date_posted|date:"M d" }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center text-muted mt-3">No lost items posted yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-lg-6 section-found">
+            <h2 class="section-title">Recently found</h2>
+            <div class="row item-grid g-3">
+                {% for item in found_items %}
+                <div class="col-4">
+                    <div class="item-card shadow-sm found-color" onclick="window.location.href='{% url 'claim_item' item.id %}'">
+                        <div class="item-image-box">
+                            {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.item_name }}" class="img-fluid">
+                            {% else %}
+                            <span class="placeholder-icon">✅</span>
+                            {% endif %}
+                        </div>
+                        <p class="item-name">{{ item.item_name }}</p>
+                        <p class="item-date text-muted">{{ item.date_posted|date:"M d" }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center text-muted mt-3">No found items posted yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
-  </div>
-  {% empty %}
-  <p class="text-center">No items found yet.</p>
-  {% endfor %}
 </div>
-
-{% endblock %}
+{% endblock content %}
